@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Festivals dans les Pyrénées Orientales</title>
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.min.css">
+</head>
+<body>
+    <header><h1>- Les festivals dans les Pyrénées-Orientales -</h1></header>
+    <nav><button id="creerFestival">Creer un festival</button>
+        <button id="utilisateur">RECHERCHE</button>
+    </nav>
+    <div id="blocUtilisateur">
+        <label>Nom du festival:</label>
+        <label>
+            <select id="name">
+                
+            </select>
+        </label>
+        <label>Debut:</label>
+        <label><input id="dateDebut1" type="text"></label>
+        <label>Fin:</label>
+        <label><input id="dateFin1" type="text"></label>
+        <button id="loadDate">VALIDER</button>    
+    </div>
+    <div id="blocCarte">
+        <div id="choix">
+            <h1>LEGENDE:</h1>
+            <p>Vous pouvez cliquer sur une iconne pour faire apparaitre les festivals, selon leurs catégories</p>
+            <div id="iconne">
+                <button id="classique" class="butType"><img src="icon/classique.png"><p>Classique</p></button>
+                <button id="jazz" class="butType"><img src="icon/jazz.png"><p>Jazz</p></button>
+                <button id="rock" class="butType"><img src="icon/rock.png"><p>Rock</p></button>
+                <button id="metal" class="butType"><img src="icon/metal.png"><p>Metal</p></button>
+                <button id="pop" class="butType"><img src="icon/pop.png"><p>Pop</p></button>
+                <button id="lyrique" class="butType"><img src="icon/lyrique.png"><p>Lyrique</p></button>
+                <button id="encours2" class="butType2"><img src="icon/encours.png"><p>En Cours</p></button>
+                <button id="afficheFestivals"><p>Tous les festivals</p></button>
+            </div>
+        </div>
+        <div id="map"></div>
+    </div>
+    <div id="form">
+            <label>Nom du festival: <input type="text" id="festName"></label>
+            <label>Type de musique:
+                <select name="musiqueType" id="type">
+                    <option value="classique">Classique</option>
+                    <option value="jazz">Jazz</option>
+                    <option value="rock">Rock</option>
+                    <option value="metal">Metal</option>
+                    <option value="lyrique">Lyrique</option>
+                    <option value="pop">Pop</option>
+                  </select></label>
+            
+            
+            <label for="dateDebut">Date debut:<input id="dateDebut" type="text"></label>
+            <label for="dateFin">Date fin:<input id="dateFin" type="text"></label>
+            <label>Coordonnées GPS: <input type="text" id="gpsCoords"></label>
+    
+            <label><button id="subFest">SOUSMETTRE CE FESTIVAL</button> </label>       
+    </div>
+        <script src="libs/jquery-3.2.1.min.js"></script>
+        <script src="libs/jquery-ui.min.js"></script>
+        <script src="libs/Dates.js"></script>
+        <script src="libs/Festival.js"></script>
+        <script src="libs/main.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYjspuewdv-JtEGK2yyoQU-dQuz-ihHgY&callback=festival.initMap&libraries=geometry"
+        async defer></script>
+</body>
+</html>
