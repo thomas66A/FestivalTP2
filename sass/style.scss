@@ -113,7 +113,7 @@ nav{
 }
 #blocUtilisateur{
     position: absolute;
-    background-color:rgba(255, 255, 255, 0.50);;
+    background-color:rgba(255, 255, 255, 0.50);
     padding-top:10px;
     padding-bottom:10px;
     width:248px;
@@ -156,5 +156,52 @@ nav{
         display: none;
         background-color:green;
         color:white;
+    }
+}
+#blocLogin{
+    position: fixed;
+    top:0px;
+    left:0px;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:rgba(245, 212, 151, 0.5);
+    z-index:1000;
+    
+    div{
+        width:500px;
+        height:250px;
+        background-color:#0128A8;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        justify-content: space-around;
+        label{
+            color:white;
+        }
+        span{
+            display:flex;
+            flex-wrap:wrap;
+            justify-content: space-between;
+            margin-left:15px;
+            margin-right:15px;    
+        }
+        button{
+            margin-left:25px;
+            margin-right:25px; 
+            height:25px;
+            border-radius:10px;
+            background-color:white;
+            font-size:1em;
+            font-weight:bold;
+            color:#0128A8;
+            line-height:18px;
+        }
+        
+    }
+    #creerSonCompte{
+        display:none;
     }
 }

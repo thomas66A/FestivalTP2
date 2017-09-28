@@ -14,6 +14,24 @@
     <nav><button id="creerFestival">Creer un festival</button>
         <button id="utilisateur">RECHERCHE</button>
     </nav>
+
+    <div id="blocLogin">
+        <div id="login">
+            <span><label>Nom utilisateur:&nbsp;</label><input type="text" id="name"></span>
+            <span><label>Mot de passe:&nbsp;</label><input type="password" id="password"></span>
+            <button id="submitLogin">VALIDER</button>
+            <button id="creerCompte">CREER UN COMPTE</button>
+            <button id="sansLogin">VOIR SANS SE LOGUER</button>
+        </div>
+        <div id="creerSonCompte">
+            <span><label>Nom utilisateur:&nbsp;</label><input type="text" id="newName"></span>
+            <span><label>Mot de passe:&nbsp;</label><input type="password" id="newPassword"></span>
+            <span><label>Confirmer mot de passe:&nbsp;</label><input type="password" id="confirmPassword"></span>
+            <button id="submitCompte">VALIDER</button>
+            <button id="sansLogin">ABANDONNER</button>
+        </div>
+    </div>
+
     <div id="blocUtilisateur">
         <label>Nom du festival:</label>
         <label>
@@ -65,8 +83,10 @@
     </div>
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/jquery-ui.min.js"></script>
+        <script src="libs/mdScript.js"></script>
         <script src="libs/Dates.js"></script>
         <script src="libs/Festival.js"></script>
+        <script src="libs/app.js"></script>
         <script src="libs/main.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBYjspuewdv-JtEGK2yyoQU-dQuz-ihHgY&callback=festival.initMap&libraries=geometry"
         async defer></script>

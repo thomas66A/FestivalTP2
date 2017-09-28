@@ -8,7 +8,6 @@ class Dates {
             this.$dateDebut1 = $("#dateDebut1");
             this.$dateFin1 = $("#dateFin1");
     
-            
     
             this.initPickers();
     
@@ -39,6 +38,21 @@ class Dates {
         var formaterDate = laDate[1] + "/"+ laDate[0] + "/" + laDate[2];
         return new Date(formaterDate).getTime();
         }
+
+        toEnglishDate(ladate){
+            var laDate = ladate;
+            laDate = laDate.split("/");
+            var formaterDate = laDate[2] + "-"+ laDate[1] + "-" + laDate[0];
+            return formaterDate;
+            }
+
+        toFrenchDate(ladate){
+            var laDate = ladate;
+            laDate = laDate.split("-");
+            var formaterDate = laDate[0] + "/"+ laDate[1] + "/" + laDate[2];
+            return formaterDate;
+            }
+        
 
         validerDateSaissie(debut, fin){
             var debutStamp = this.getTimeStamp(debut);

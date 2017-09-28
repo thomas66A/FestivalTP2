@@ -33,8 +33,9 @@ class Festival {
 
 
 
-        addMarker( position, title, type, debut, fin ){
+        addMarker( latLng, title, type, debut, fin ){
             var dates = new Dates();
+            
             var img = dates.setTheIcon(debut, fin);
             if(img == true){
                 this.icon = "icon/" + type + "2" + ".png";
@@ -43,15 +44,19 @@ class Festival {
                 this.icon = "icon/" + type + ".png";
             }
             var marker = new google.maps.Marker({
-                position: position,
+                position: latLng,
                 icon:this.icon,
                 map: this.map,
                 title: title
             });
+            
             marker.type = type;
-            this.markers.push( marker );
+            
             return marker;
         }
+
+        
+
         addInfos( content, marker ) {
             var infowindow = new google.maps.InfoWindow({
                 content: content

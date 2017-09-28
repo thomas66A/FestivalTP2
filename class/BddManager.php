@@ -1,16 +1,16 @@
 <?php
-//Contient les instances des repositories
+
 class BddManager{
-    private $noteRepository;
+    private $festivalRepository;
     private $connection;
 
     function __construct(){
         $this->connection = Connection::getConnection();
-        $this->noteRepository = new noteRepository($this->connection);
+        $this->festivalRepository = new FestivalRepository($this->connection);
     }
 
-    function getNoteRepository(){
-        return $this->noteRepository;
+    function getFestivalRepository(){
+        return $this->festivalRepository;
     }
 
     
