@@ -23,6 +23,14 @@ nav{
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
+    p{
+        font-size: 1.2em;
+        background-color:yellow;
+        color:red;
+        line-height:40px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
     button{
         width:250px;
         height:30px;
@@ -32,6 +40,10 @@ nav{
         border:initial;
         font-size: 1.2em;
     }
+    #creerFestival, #UtilisateurParticipe{
+        display:none;
+    }
+
 }
 #blocCarte{
     display: flex;

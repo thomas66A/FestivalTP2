@@ -34,10 +34,17 @@ class Dates {
         }
         getTimeStamp(ladate){
         var laDate = ladate;
-        laDate = laDate.split("/");
-        var formaterDate = laDate[1] + "/"+ laDate[0] + "/" + laDate[2];
+        laDate = laDate.split("-");
+        var formaterDate = laDate[0] + "/"+ laDate[1] + "/" + laDate[2];
         return new Date(formaterDate).getTime();
         }
+
+        getTimeStamp2(ladate){
+            var laDate = ladate;
+            laDate = laDate.split("/");
+            var formaterDate = laDate[2] + "/"+ laDate[1] + "/" + laDate[0];
+            return new Date(formaterDate).getTime();
+            }
 
         toEnglishDate(ladate){
             var laDate = ladate;
@@ -49,14 +56,14 @@ class Dates {
         toFrenchDate(ladate){
             var laDate = ladate;
             laDate = laDate.split("-");
-            var formaterDate = laDate[0] + "/"+ laDate[1] + "/" + laDate[2];
+            var formaterDate = laDate[2] + "/"+ laDate[1] + "/" + laDate[0];
             return formaterDate;
             }
         
 
         validerDateSaissie(debut, fin){
-            var debutStamp = this.getTimeStamp(debut);
-            var finStamp = this.getTimeStamp(fin);
+            var debutStamp = this.getTimeStamp2(debut);
+            var finStamp = this.getTimeStamp2(fin);
             if(finStamp<debutStamp)
                 {
                     alert("la date de fin doit etre superieure à la date du debut ");

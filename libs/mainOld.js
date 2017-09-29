@@ -190,39 +190,39 @@ $(document).on("click", "#loadDate", function(){
     var bon = dates.validerDateSaissie(dateDebutUtilisateur, dateFinUtilisateur);
     if(bon == true){
         festival.showNone();
-        $("#blocUtilisateur").fadeOut(300);
-        if(localStorage.getItem("festival")){
-            var festival_json = localStorage.getItem("festival");
-            var lesFestival = JSON.parse(festival_json);
+        // $("#blocUtilisateur").fadeOut(300);
+        // if(localStorage.getItem("festival")){
+        //     var festival_json = localStorage.getItem("festival");
+        //     var lesFestival = JSON.parse(festival_json);
             
-            for(var i = 0; i<lesFestival.length ; i++)
-                {   var x=0;
-                    for(var key in lesFestival[i]){
+        //     for(var i = 0; i<lesFestival.length ; i++)
+        //         {   var x=0;
+        //             for(var key in lesFestival[i]){
                         
-                        if(x==1){
-                            var title = lesFestival[i][key];
-                        }
-                        if(x==4){
-                            var dateDebutFestival = lesFestival[i][key];    
-                        }
-                        if(x==5){
-                            var dateFinFestival = lesFestival[i][key];    
-                        }
-                        x++;
+        //                 if(x==1){
+        //                     var title = lesFestival[i][key];
+        //                 }
+        //                 if(x==4){
+        //                     var dateDebutFestival = lesFestival[i][key];    
+        //                 }
+        //                 if(x==5){
+        //                     var dateFinFestival = lesFestival[i][key];    
+        //                 }
+        //                 x++;
                         
-                    }
+        //             }
                    
-                       var stampDebutUtilisateur = dates.getTimeStamp(dateDebutUtilisateur);
-                       var stampFinUtilisateur = dates.getTimeStamp(dateFinUtilisateur);
-                       var stampDebutFestival = dates.getTimeStamp(dateDebutFestival);
-                       var stampFinFestival = dates.getTimeStamp(dateFinFestival);
+        //                var stampDebutUtilisateur = dates.getTimeStamp(dateDebutUtilisateur);
+        //                var stampFinUtilisateur = dates.getTimeStamp(dateFinUtilisateur);
+        //                var stampDebutFestival = dates.getTimeStamp(dateDebutFestival);
+        //                var stampFinFestival = dates.getTimeStamp(dateFinFestival);
 
-                       if((stampDebutFestival <= stampFinUtilisateur) && (stampFinFestival >= stampDebutUtilisateur)) {
+        //                if((stampDebutFestival <= stampFinUtilisateur) && (stampFinFestival >= stampDebutUtilisateur)) {
 
-                            festival.showOne(title);
-                       }
-                }
-        }
+        //                     festival.showOne(title);
+        //                }
+        //         }
+        // }
     }
 
 

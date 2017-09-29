@@ -23,9 +23,10 @@ Flight::route("POST /CreerCompte", function(){
     $name = Flight::request()->data["name"];
     $password = Flight::request()->data["password"];
     $BddManager = Flight::get("BddManager");
-    $repo = $BddManager->getFestivalRepository();
+    $repo = $BddManager->getUtilisateurRepository();
     $id = $repo->createUtilisateur($name, $password);
-    if( $id != 0 ){
+    
+    if( $utilisateur != 0 ){
         $status["success"] = true;
         $status["id"] = $id;
     }  

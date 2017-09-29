@@ -51,7 +51,7 @@ class Festival {
             });
             
             marker.type = type;
-            
+            this.markers.push( marker );
             return marker;
         }
 
@@ -68,8 +68,8 @@ class Festival {
             
         }
 
-        filter( types ){
-                for(var marker of this.markers){
+        filter( types ){           
+                for(var marker of this.markers){    
                     marker.setVisible(false);
                         if( marker.type == types ) {
                             marker.setVisible(true);
@@ -108,18 +108,20 @@ class Festival {
         }
 
         attrapeNom(){
-            $("#name").html("<option> </option>");
+            $("#nameFest").html("<option>Ca marche </option>");
             this.noms = [];
             for(var marker of this.markers){
-                
                 var aPusher = marker.title;
                 this.noms.push(aPusher);
             }
             for(var y = 0; y < this.noms.length; y++){
                 var affiche = "<option value='" + this.noms[y] + "' class='change'>" + this.noms[y] + "</option>";
-                $("#name").append(affiche);
+                $("#nameFest").append(affiche);
+                
             }
             
-        }
+        
+    
+}
         
 }

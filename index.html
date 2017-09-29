@@ -11,7 +11,10 @@
 </head>
 <body>
     <header><h1>- Les festivals dans les Pyrénées-Orientales -</h1></header>
-    <nav><button id="creerFestival">Creer un festival</button>
+    <nav><p id="showUtilisateur"></p>
+        <button id="creerFestival">Creer un festival</button>
+        <button id="seloguer">SE LOGUER</button>
+        <button id="UtilisateurParticipe">MES PARTICIPATIONS</button>
         <button id="utilisateur">RECHERCHE</button>
     </nav>
 
@@ -28,14 +31,14 @@
             <span><label>Mot de passe:&nbsp;</label><input type="password" id="newPassword"></span>
             <span><label>Confirmer mot de passe:&nbsp;</label><input type="password" id="confirmPassword"></span>
             <button id="submitCompte">VALIDER</button>
-            <button id="sansLogin">ABANDONNER</button>
+            <button id="abandont">ABANDONNER</button>
         </div>
     </div>
 
     <div id="blocUtilisateur">
         <label>Nom du festival:</label>
         <label>
-            <select id="name">
+            <select id="nameFest">
                 
             </select>
         </label>
