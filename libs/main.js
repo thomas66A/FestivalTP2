@@ -1,5 +1,6 @@
 var festival = new Festival();
 var dates = new Dates();
+var user = new Utilisateur();
 var positionFestival = {};
 festival.main = function(){
     var position = [];
@@ -21,11 +22,36 @@ $(function(){
 $(document).on("click","#sansLogin", function(){
     $("#blocLogin").fadeOut(500);
 });
+//showLoginBox
+$("#seloguer").click(function(){
+    $("#blocLogin").fadeIn(500);
+})
+//LOGIN
+$("#submitLogin").click(function(){
+    $name = $("#name").val();
+    $pass = $("#password").val();
+    $pass = $.md5($pass);
+    login($name, $pass);
+});
+//SE DELOGUER
+$("#delete").click(function(){    
+    user.seDeLoguer();
+    $("#creerFestival").hide();
+    $("#form").css("display","none");
+    $("#seCreer").show();
+    festival.showAll();
+})
 //AFFICHAGE CREER COMPTE
 $("#creerCompte").click(function(){
     $("#login").css("display","none");
     $("#creerSonCompte").css("display", "flex");
 });
+//CREER COMPTE2
+$("#seCreer").click(function(){
+    $("#blocLogin").fadeIn(500);
+    $("#login").css("display","none");
+    $("#creerSonCompte").css("display", "flex");
+})
 //ABANDONT
 $("#abandont").click(function(){
     $("#login").css("display","flex");
@@ -143,12 +169,25 @@ $(document).on("click", "#loadDate", function(){
     }
 });
 
-//CHANGE LA COULEUR D'UN FESTIVAL LORSQUE UN L'UTILISATEUR S'INSCRIT
+
 $(document).on("click", ".participe1", function(){
-    var titre = $(this).parent().children('h1').html();
-    $(this).parent().css("background-color","green");
-    $(this).parent().css("color","white");
-    $(this).css("display", "none");
-    $(this).parent().children("#participe2").css("display", "block");
+    if(user.name){
+    $title =  $(this).parent().children('h1').html();
+    $idUtilisateur = user.id;
+    jyParticipe($title, $idUtilisateur);
+    }
+    else{
+        alert("Vous devez être logué pour participer");
+    }
+})
+
+$(document).on("click","#UtilisateurParticipe",function(){
+    if(user.name){
+        $idUtilisateur = user.id;
+        montrerMesParticipations($idUtilisateur);
+    }
+    else{
+        alert("Vous devez être logué pour participer");
+    }
 })
     

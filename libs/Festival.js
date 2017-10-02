@@ -106,6 +106,17 @@ class Festival {
                     }
                 }
         }
+        showSome(festivals){
+            festival.showNone();
+            for(var marker of this.markers){    
+                for(var i = 0; i < festivals.length; i++){
+                    if(marker.title == festivals[i]){
+                        marker.setVisible(true);
+                    }
+                }
+        }
+    }
+
 
         attrapeNom(){
             $("#nameFest").html("<option>Ca marche </option>");

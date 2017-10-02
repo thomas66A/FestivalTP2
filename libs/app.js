@@ -9,13 +9,16 @@ function creerCompte(name, password){
         },
         success : function(data){
             if(data){ 
-            console.log(data);
-            if(data.admin == 0){var utilisateur = "Utilisateur: ";}
+            user.setUtilisateur(data.id, data.name, data.admin, data.password, data.festivalId);
+            if(user.admin == 0){var utilisateur = "Utilisateur: ";}
             else{var utilisateur = "Admin: ";}
-            $("#blocLogin").fadeOut(500);
-            $("#seloguer").fadeOut(500);
-            $("#UtilisateurParticipe").fadeIn(500);
-            $("#showUtilisateur").html(utilisateur + data.name);   
+            $("#blocLogin").hide();
+            $("#seloguer").hide();
+            $("#seCreer").hide();
+            $("#UtilisateurParticipe").show();
+            $("#showUtilisateur").show();
+            $("#showUtilisateur").html(utilisateur + user.name);   
+            remettreEnPlace();
             }
             else{
                 alert("Ce nom existe déja dans la base de donnée");
@@ -27,6 +30,52 @@ function creerCompte(name, password){
         }
     })
 };
+function login($name, $pass){
+    $.ajax({
+        url : "http://localhost:8888/Festival-TP-WebService/login",
+        method : "post",
+        dataType : "json",
+        data : {
+            name : $name,
+            password : $pass
+            
+        },
+        success : function(data){
+            //console.log(data);
+            if(data){
+             
+            user.setUtilisateur(data.id, data.name, data.admin, data.password, data.festivalId);
+            if(user.admin == 0){
+                var utilisateur = "Utilisateur: ";
+                $("#blocLogin").hide();
+                $("#seCreer").hide();
+                $("#seloguer").hide();
+                $("#UtilisateurParticipe").show();
+                $("#showUtilisateur").show();
+                $("#delete").show();   
+                $("#showUtilisateur").html(utilisateur + user.name); 
+                remettreEnPlace();}
+            else{
+                var utilisateur = "Admin: ";
+                $("#blocLogin").hide();
+                $("#seCreer").hide();
+                $("#seloguer").hide();
+                $("#UtilisateurParticipe").show();
+                $("#delete").show();
+                $("#creerFestival").show();   
+                remettreEnPlace();
+            }
+            }
+            else{
+                alert("Probleme de connexion: Soit l'utilisateur n'existe pas, soit vous avez utilisez un mauvais mots de passe");
+            }
+            
+        },
+        error : function( error){
+            console.log(error);
+        }
+    })
+}
 function addMarkerInBdd(lat, lng, title, type, debut, fin){
     
     $.ajax({
@@ -59,8 +108,12 @@ function GetFestivalInBdd(){
         dataType : "json",
         
         success : function(data){
+            
             for( var data_festival of data ){
+                
                 var latLng = new google.maps.LatLng(data_festival.lat, data_festival.lng); 
+                var dateFin = dates.sheckEnd(data_festival.dateFin);
+                if (dateFin == true){
                 var marker = festival.addMarker( latLng, data_festival.title, data_festival.type, data_festival.dateDebut, data_festival.dateFin );
                 var debut = dates.toFrenchDate(data_festival.dateDebut);
                 var fin = dates.toFrenchDate(data_festival.dateFin);
@@ -74,6 +127,7 @@ function GetFestivalInBdd(){
                 infos += "<p id='encours'>En cours</p>";
                 infos += "</div>";
                 festival.addInfos( infos, marker );
+                }
             } 
             
             
@@ -139,3 +193,38 @@ function myPeriodeFestival(dateDebutUtilisateur, dateFinUtilisateur){
 
         })
 };
+function jyParticipe($title, $idUtilisateur){
+    $.ajax({
+        url : "http://localhost:8888/Festival-TP-WebService/jyParticipe",
+        method : "post",
+        dataType : "json",
+        data : {
+            title : $title,
+            idUtilisateur : $idUtilisateur
+        },
+        success : function(data){
+            console.log(data);  
+            
+        },
+        error : function( error){
+            console.log(error);
+        }
+    })
+}
+function montrerMesParticipations($idUtilisateur){
+    $.ajax({
+        url : "http://localhost:8888/Festival-TP-WebService/mesParticipations",
+        method : "post",
+        dataType : "json",
+        data : {
+            idUtilisateur : $idUtilisateur
+        },
+        success : function(data){
+              
+            festival.showSome(data);
+        },
+        error : function( error){
+            console.log(error);
+        }
+    })
+}

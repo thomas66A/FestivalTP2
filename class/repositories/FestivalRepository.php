@@ -12,13 +12,28 @@ class FestivalRepository extends Repository{
         return $festival;
     }
 
-    // function getNote($id){
-    //     $query = "SELECT * FROM notes WHERE id=$id";
-    //     $result = $this->connection->query($query);
-    //     $result = $result->fetch(PDO::FETCH_ASSOC);
-    //     $note = new Note ( $result );
-    //     return $note;
-    // }
+    function getIdFestival($title){
+        $prepared = $this->connection->prepare("SELECT * FROM festival WHERE title=:title");
+        $prepared->execute(array(
+            "title" => $title
+        ));
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        
+            return $result;
+        
+       
+    }
+    function getTitleFestival($id){
+        $prepared = $this->connection->prepare("SELECT * FROM festival WHERE id=:id");
+        $prepared->execute(array(
+            "id" => $id
+        ));
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        
+            return $result;
+        
+       
+    }
 
     function createUtilisateur($nom, $password){
         $query = $this->connection->prepare("INSERT INTO utilisateur SET name=:name,password=:password");

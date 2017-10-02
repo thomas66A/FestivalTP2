@@ -86,4 +86,18 @@ class Dates {
                 return false;
             }
         }
+        sheckEnd(dateFin){
+            console.log(dateFin);
+            var controleDate = this.getTimeStamp(dateFin);
+            var aujourdhui = Date.now();
+            
+            if(aujourdhui < controleDate){
+                
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
     }

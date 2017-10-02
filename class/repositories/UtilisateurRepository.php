@@ -31,4 +31,21 @@ class UtilisateurRepository extends Repository{
         
         }
     }
+    function getUtilisateur($nom, $password){
+        
+        
+        $prepared = $this->connection->prepare("SELECT * FROM utilisateur WHERE name=:name AND password=:password");
+        $prepared->execute(array(
+            "name" => $nom,
+            "password" => $password
+        ));
+        $result = $prepared->fetch(PDO::FETCH_ASSOC);
+        if($result != false){
+            return $result;
+            
+        }
+        else{
+            return $result;
+        }
+    }
 }
