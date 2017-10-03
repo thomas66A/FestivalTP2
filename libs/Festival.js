@@ -62,8 +62,9 @@ class Festival {
                 content: content
             });
             var that = this;
+            marker.infowindow = infowindow;
             marker.addListener("click", function(){
-                infowindow.open(that.map, marker);
+                marker.infowindow.open(that.map, marker);
             });
             
         }
@@ -71,6 +72,7 @@ class Festival {
         filter( types ){           
                 for(var marker of this.markers){    
                     marker.setVisible(false);
+                    marker.infowindow.close();
                         if( marker.type == types ) {
                             marker.setVisible(true);
                         }
@@ -78,13 +80,16 @@ class Festival {
                  }
         
         showAll(){
+            
             for(var marker of this.markers){
+                marker.infowindow.close();
                 marker.setVisible(true);
             }
         };
         showNone(){
             for(var marker of this.markers){
                 marker.setVisible(false);
+                marker.infowindow.close();
             }
         };
 
@@ -100,6 +105,7 @@ class Festival {
         showByName(name){
             for(var marker of this.markers){
                 marker.setVisible(false);
+                marker.infowindow.close();
                     if( marker.title == name ) {
                         marker.setVisible(true);
                         
@@ -119,8 +125,10 @@ class Festival {
 
 
         attrapeNom(){
-            $("#nameFest").html("<option>Ca marche </option>");
+            
             this.noms = [];
+            $("#nameFest").html("");
+            $("#nameFest").html("<option></option>");
             for(var marker of this.markers){
                 var aPusher = marker.title;
                 this.noms.push(aPusher);
@@ -134,5 +142,9 @@ class Festival {
         
     
 }
-        
+detruireObjet(){
+    for ( var key in this)
+    {key=null}
+    this.markers = [];      
+}
 }

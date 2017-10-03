@@ -73,7 +73,7 @@ Flight::route("POST /jyParticipe", function(){
     $repo1 = $BddManager->getParticipationRepository();
     $repo1->newParticipation($idUtilisateur, $id);
     
-    echo json_encode($id);
+    echo json_encode($title);
 });
 
 Flight::route("POST /mesParticipations", function(){
@@ -91,7 +91,9 @@ Flight::route("POST /mesParticipations", function(){
     for($i=0; $i<sizeof($participation); $i++){
         $repo1 = $BddManager->getFestivalRepository();
         $festival = $repo1->getTitleFestival($participation[$i]);
-        $festivals[]=$festival['title'];
+        if($festival){
+        $festivals[]=$festival;
+        }
     }
     
     echo json_encode($festivals);

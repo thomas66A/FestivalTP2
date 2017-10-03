@@ -16,6 +16,7 @@ function creerCompte(name, password){
             $("#seloguer").hide();
             $("#seCreer").hide();
             $("#UtilisateurParticipe").show();
+            $("#delete").show();
             $("#showUtilisateur").show();
             $("#showUtilisateur").html(utilisateur + user.name);   
             remettreEnPlace();
@@ -91,7 +92,7 @@ function addMarkerInBdd(lat, lng, title, type, debut, fin){
             fin : fin
         },
         success : function(data){
-            console.log(data);  
+              
             
         },
         error : function( error){
@@ -144,7 +145,7 @@ function getFestivalEnCours(){
         dataType : "json",
         
         success : function(data){
-            
+        festival.showNone();   
         for( var data_festival of data ){
         var title = data_festival.title;
         var dateDebutFestival = data_festival.dateDebut;
@@ -171,7 +172,7 @@ function myPeriodeFestival(dateDebutUtilisateur, dateFinUtilisateur){
         dataType : "json",
         
         success : function(data){
-            
+        festival.showNone();
         for( var data_festival of data ){
         var title = data_festival.title;
         var dateDebutFestival = data_festival.dateDebut;
@@ -203,8 +204,8 @@ function jyParticipe($title, $idUtilisateur){
             idUtilisateur : $idUtilisateur
         },
         success : function(data){
-            console.log(data);  
-            
+             
+            alert("Votre participation au festival: \"" + data + "\" a était validé");
         },
         error : function( error){
             console.log(error);
@@ -220,8 +221,25 @@ function montrerMesParticipations($idUtilisateur){
             idUtilisateur : $idUtilisateur
         },
         success : function(data){
+              console.log(data);
               
-            festival.showSome(data);
+              for( var data_festival of data ){    
+                var latLng = new google.maps.LatLng(data_festival.lat, data_festival.lng); 
+                var dateFin = dates.sheckEnd(data_festival.dateFin);
+                if (dateFin == true){
+                var marker = festival.addMarker( latLng, data_festival.title, data_festival.type, data_festival.dateDebut, data_festival.dateFin );
+                var debut = dates.toFrenchDate(data_festival.dateDebut);
+                var fin = dates.toFrenchDate(data_festival.dateFin);
+                var infos = "<div id=\"info\">";
+                infos += "<h1>" + data_festival.title + "</h1>";
+                infos += "<h3>Type de musique: " + data_festival.type + "</h3>";
+                infos += "<h4>Debut du festival: <span id='debut'>" + debut + "</span></h4>";
+                infos += "<h4>Fin du festival: <span id='fin'>" + fin + "</h4>";
+                infos += "</div>";
+                festival.addInfos( infos, marker );
+                console.log(marker);
+                }
+            }
         },
         error : function( error){
             console.log(error);

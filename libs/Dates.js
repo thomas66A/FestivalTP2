@@ -87,7 +87,6 @@ class Dates {
             }
         }
         sheckEnd(dateFin){
-            console.log(dateFin);
             var controleDate = this.getTimeStamp(dateFin);
             var aujourdhui = Date.now();
             
